@@ -31,4 +31,5 @@ Um banco precisa prever se um cliente se tornará inadimplente (alvo: `loan_stat
    ```
 
 ## Resumo Executivo
-*(A ser preenchido ao final da análise exploratória e da avaliação dos modelos)*
+**Insights da EDA:** A base apresentou um forte desbalanceamento na variável alvo (`loan_status`), exigindo técnicas de Undersampling no Treino. Variáveis como idade e tempo de emprego possuíam outliers extremos (ex: > 120 anos), que foram removidos para garantir a estabilidade dos modelos (em especial do KNN). A imputação de nulos foi realizada de forma robusta utilizando a Mediana.
+**Veredito do Modelo:** Após testes comparativos buscando combater o Overfitting, a **Árvore de Decisão com max_depth=7** apresentou a melhor capacidade de generalização e o melhor *Recall* para a classe minoritária. No contexto financeiro, o **Falso Negativo** (prever que o cliente é seguro, mas ele dar calote) traz o pior impacto (perda do principal do empréstimo). A Árvore de Decisão minimizou significativamente esse erro em relação ao KNN, sendo o modelo oficialmente recomendado para entrar em produção.
